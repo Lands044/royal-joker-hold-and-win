@@ -30,7 +30,7 @@ class SlotMachine {
 		this.isSoundEnabled = true;
 
 		// Тип анімації виграшу: 'line' (виграшна лінія) або 'border' (анімована обводка)
-		this.winAnimationType = 'border';
+		this.winAnimationType = 'line';
 
 		// Фінансові значення
 		this.balance = 1000.00;
@@ -44,7 +44,7 @@ class SlotMachine {
 		this.breakpoints = {
 			desktop: {
 				minWidth: 767.98,
-				cols: 5,
+				cols: 3,
 				rows: 3,
 				// Масштабування тільки для екранів > 1440px, інакше фіксовано 180px
 				getIconHeight: () => Math.max(180, (180 / 1440) * window.innerWidth)
@@ -99,8 +99,6 @@ class SlotMachine {
 					winAmount: 0,
 					winLine: null,
 					result: [
-						[2, 4, 1],
-						[3, 5, 2],
 						[1, 7, 4],
 						[6, 2, 5],
 						[4, 1, 3]
@@ -110,10 +108,8 @@ class SlotMachine {
 					type: 'smallwin',
 					winAmount: 50,
 					// Виграшна лінія: середній рядок (горизонтальна лінія посередині)
-					winLine: [1, 2, 1, null, null],
+					winLine: [1, 2, 1],
 					result: [
-						[1, 3, 4],
-						[7, 4, 3],
 						[4, 3, 1],
 						[2, 5, 4],
 						[5, 6, 7]
@@ -123,10 +119,8 @@ class SlotMachine {
 					type: 'bigwin',
 					winAmount: 150,
 					// Виграшна лінія: діагональ вниз
-					winLine: [0, 0, 1, 2, 2],
+					winLine: [1, 2, 2],
 					result: [
-						[8, 4, 7],
-						[8, 6, 2],
 						[3, 8, 1],
 						[1, 4, 8],
 						[5, 3, 8]
