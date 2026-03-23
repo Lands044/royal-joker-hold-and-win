@@ -5,7 +5,6 @@ class SlotMachine {
 		// DOM елементи
 		this.drumSpinner = document.querySelector('.drum__spinner');
 		this.popup = document.querySelector('.popup');
-		this.buttonsWrap = document.querySelector('.menu__bottom');
 
 		// Анімація конфеті
 		this.confettiAnimation = null;
@@ -22,7 +21,7 @@ class SlotMachine {
 
 		// Елементи UI
 		this.balanceElement = document.querySelector('.menu__info .number');
-		this.betElement = document.querySelector('.menu__bet-value .number');
+		this.lastWinElement = document.querySelector('.menu__last-win .number');
 
 		// Стан гри
 		this.spinCount = 0;
@@ -34,6 +33,7 @@ class SlotMachine {
 
 		// Фінансові значення
 		this.balance = 1000.00;
+		this.lastWin = 0;
 		this.betValues = [1, 2, 4, 8, 16, 32, 64];
 		this.currentBetIndex = 0;
 		this.bet = this.betValues[this.currentBetIndex];
@@ -189,15 +189,19 @@ class SlotMachine {
 		this.createReels();
 
 		// Обробники кнопок спіну
-		this.spinButton.addEventListener('click', (e) => {
-			e.preventDefault();
-			this.handleSpin();
-		});
+		if (this.spinButton) {
+			this.spinButton.addEventListener('click', (e) => {
+				e.preventDefault();
+				this.handleSpin();
+			});
+		}
 
-		this.autoButton.addEventListener('click', (e) => {
-			e.preventDefault();
-			this.handleSpin();
-		});
+		if (this.autoButton) {
+			this.autoButton.addEventListener('click', (e) => {
+				e.preventDefault();
+				this.handleSpin();
+			});
+		}
 
 		// Обробник кнопки звуку
 		this.soundButton.addEventListener('click', (e) => {
@@ -350,9 +354,13 @@ class SlotMachine {
 		// Показуємо результат
 		this.showResult(currentResult);
 
-		// Додаємо виграш
+		// Додаємо виграш (2-й і 3-й спін = виграшні)
 		if (currentResult.winAmount > 0) {
+			this.lastWin = currentResult.winAmount;
 			this.balance += currentResult.winAmount;
+			this.updateUI();
+		} else {
+			this.lastWin = 0;
 			this.updateUI();
 		}
 
@@ -882,7 +890,7 @@ class SlotMachine {
 
 	// Показ CTA popup
 	showCTA() {
-		this.buttonsWrap.classList.add('hidden');
+		if (this.buttonsWrap) this.buttonsWrap.classList.add('hidden');
 
 		setTimeout(() => {
 			this.popup.classList.add('show');
@@ -929,18 +937,16 @@ class SlotMachine {
 
 	// Блокує кнопки спіну
 	disableSpinButtons() {
-		this.spinButton.classList.add('disabled');
-		this.autoButton.classList.add('disabled');
+		if (this.spinButton) this.spinButton.classList.add('disabled');
+		if (this.autoButton) this.autoButton.classList.add('disabled');
 	}
 
-	// Розблоковує кнопки спіну
 	enableSpinButtons() {
-		// Не розблоковуємо якщо всі спіни використано
 		const results = this.getResultsForCurrentBreakpoint();
 		if (this.spinCount >= results.length) return;
 
-		this.spinButton.classList.remove('disabled');
-		this.autoButton.classList.remove('disabled');
+		if (this.spinButton) this.spinButton.classList.remove('disabled');
+		if (this.autoButton) this.autoButton.classList.remove('disabled');
 	}
 
 	increaseBet() {
@@ -965,12 +971,12 @@ class SlotMachine {
 		if (this.balanceElement) {
 			this.balanceElement.textContent = this.balance.toFixed(2);
 		}
+		if (this.lastWinElement) {
+			this.lastWinElement.textContent = this.lastWin.toFixed(2);
+		}
 		const betDisplay = document.querySelector('.menu__bet-current .number');
 		if (betDisplay) {
 			betDisplay.textContent = this.bet.toFixed(2);
-		}
-		if (this.betElement) {
-			this.betElement.textContent = this.bet.toFixed(2);
 		}
 		if (this.decreaseButton) {
 			this.decreaseButton.disabled = this.currentBetIndex === 0;
