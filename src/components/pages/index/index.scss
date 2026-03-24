@@ -1,4 +1,4 @@
-$red: #8b1a1a;
+$orange: #fe851c;
 $dark-red: #3d0a0a;
 $gold: #ffb921;
 $gold-light: #f5d77a;
@@ -20,10 +20,10 @@ $base-width: 1440;
 }
 
 .page {
-	background: url('../../../assets/img/bg.jpg') center/cover no-repeat;
-	background-color: $dark-red;
+	background: radial-gradient(circle at center, rgba(255, 0, 255, 0.2), transparent 60%),
+			linear-gradient(180deg, #2b0040, #6a0dad);
 	min-height: 100vh;
-	min-height: 100dvh; // Dynamic viewport height for iOS Safari/Chrome
+	min-height: 100dvh;
 	display: flex;
 	flex-direction: column;
 
@@ -53,7 +53,7 @@ $base-width: 1440;
 	}
 
 	@media (min-height: toEm(860)) and (max-width: toEm($mobile)) {
-		padding-top: 25%;
+		padding-top: 20%;
 	}
 
 	&__wrap {
@@ -66,42 +66,73 @@ $base-width: 1440;
 	}
 
 	&__header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		gap: vw(10);
-		position: relative;
-		z-index: 10;
-		padding: 0 vw(10);
-
-		@media (max-width:toEm($mobile)){
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-		}
-	}
-
-	&__logo {
-		flex: 1;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		max-width: vw(360);
-		min-width: vw(260);
-		width: 100%;
-		margin: 0 auto;
 		position: relative;
 		z-index: 100;
-		height: vw(64);
+		display: grid;
+		grid-template-rows: auto auto;
+		max-width: 800px;
+		margin: 0 auto;
+	}
+
+	&__header-coin {
+		position: absolute;
+		left: 50%;
+		bottom: -18px;
+		transform: translateX(-50%);
+		width: vw(280);
+		pointer-events: none;
 
 		img {
 			width: 100%;
 			height: auto;
 		}
 
+		@media (max-width:toEm(640)){
+			width: vw(220);
+		}
+	}
+
+	&__header-top {
+		display: flex;
+		justify-content: space-between;
+		gap: vw(10);
+
 		@media (max-width:toEm($mobile)){
-			max-width: 200px;
-			grid-column: 2 span;
-			order: 1;
+			gap: 6px;
+		}
+	}
+
+	&__header-bottom {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: vw(10);
+		margin-top: vw(4);
+
+		@media (max-width:toEm($mobile)){
+			gap: 6px;
+			margin-top: 3px;
+		}
+	}
+
+	&__title {
+		font-family: serif;
+		font-size: vw(42);
+		font-weight: 900;
+		font-style: italic;
+		color: #e8a000;
+		text-shadow:
+			0 0 vw(8) rgba(255, 180, 0, 0.9),
+			2px 2px 0 #7a1a00,
+			-1px -1px 0 #7a1a00;
+		letter-spacing: vw(2);
+		text-transform: uppercase;
+		line-height: 1;
+		white-space: nowrap;
+
+		@media (max-width:toEm($mobile)){
+			font-size: 22px;
+			letter-spacing: 1px;
 		}
 	}
 
@@ -123,70 +154,90 @@ $base-width: 1440;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	padding: vw(4) vw(20);
-	max-width: vw(280);
-	width: 100%;
+	padding: vw(5) vw(18);
+	border: vw(3) solid $gold-border;
+	border-radius: vw(6);
+	flex: 1;
 
 	@media (max-width:toEm($mobile)){
-		min-width: 100%;
-		padding: 5px 10px;
-		order: 2;
-	}
-	
-	// висота менша за 700px та ширина менша за 768px
-	@media (max-height: toEm(700)) and (max-width: toEm($mobile)) {
-		display: none;
+		padding: 4px 10px;
+		min-width: 0;
+		border-width: 2px;
+		border-radius: 5px;
 	}
 
 	&__label {
-		font-size: vw(18);
+		font-size: vw(14);
 		font-weight: 700;
 		text-transform: uppercase;
 		letter-spacing: vw(2);
-		margin-bottom: vw(5);
+		margin-bottom: vw(2);
+		color: $gold;
 
 		@media (max-width:toEm($mobile)){
-			font-size: 12px;
+			font-size: 9px;
+			letter-spacing: 1px;
 		}
 	}
 
 	&__value {
-		font-size: vw(28);
+		font-size: vw(26);
 		font-weight: 900;
 		line-height: 1;
+		color: $gold;
 
 		@media (max-width:toEm($mobile)){
-			font-size: 24px;
+			font-size: 16px;
 		}
 	}
 
-	&--mega {
-		border: vw(3) solid #ffa135;
-		border-radius: vw(6);
-		box-shadow: 0 0 vw(15) rgba(255, 107, 53, 0.8), inset 0 0 vw(20) rgba(255, 215, 0, 0.6);
-
-		.jackpot__label {
-			color: #ff6b35;
-			text-shadow: 0 0 vw(10) rgba(255, 107, 53, 0.8);
-		}
-		.jackpot__value {
-			color: $gold-light;
-			text-shadow: 0 0 vw(15) rgba(255, 215, 0, 0.6);
-		}
+	// GRAND — червоний фон
+	&--grand {
+		background: #8b1010;
+		border-color: $gold-border;
+		.jackpot__label { color: $gold-light; }
+		.jackpot__value { color: #fff; }
 	}
 
+	// MAJOR — зелений фон
+	&--major {
+		background: #0d5c1a;
+		border-color: $gold-border;
+		.jackpot__label { color: $gold; }
+		.jackpot__value { color: $gold; }
+	}
+
+	// MINOR — синій фон
+	&--minor {
+		background: #0a2e6e;
+		border-color: $gold-border;
+		.jackpot__label { color: #6ab0ff; }
+		.jackpot__value { color: #fff; }
+	}
+
+	// MINI — фіолетовий фон
 	&--mini {
-		border: vw(3) solid $cyan;
-		border-radius: vw(6);
-		box-shadow: 0 0 vw(15) rgba(0, 212, 255, 0.5), inset 0 0 vw(20) rgba(0, 212, 255, 0.1);
+		background: #4a1a7a;
+		border-color: $gold-border;
+		.jackpot__label { color: $gold; }
+		.jackpot__value { color: $gold; }
+	}
 
-		.jackpot__label {
-			color: $cyan;
-			text-shadow: 0 0 vw(10) rgba(0, 212, 255, 0.8);
+	&--grand,
+	&--major {
+		max-width: vw(220);
+
+		@media (max-width:toEm(640)){
+			max-width: vw(110);
 		}
-		.jackpot__value {
-			color: #fff;
-			text-shadow: 0 0 vw(10) rgba(255, 255, 255, 0.5);
+	}
+
+	&--minor,
+	&--mini {
+		max-width: vw(160);
+
+		@media (max-width:toEm(640)) {
+			max-width: vw(80);
 		}
 	}
 }
@@ -203,7 +254,7 @@ $base-width: 1440;
 	background: $frameGradient;
 	border: vw(2) solid $gold;
 	box-shadow: 0 0 vw(6) rgba(246, 201, 139, 0.6);
-	padding: vw(4) vw(18);
+	padding: vw(2) vw(8);
 	border-radius: vw(16);
 
 	@media (max-width:toEm($mobile)){
@@ -217,7 +268,7 @@ $base-width: 1440;
 		height: 100%;
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		background: $frameGradient;
+		background: #16101a;
 		position: relative;
 		z-index: 10;
 		border: vw(4) solid $orange-border;
@@ -234,8 +285,12 @@ $base-width: 1440;
 		position: relative;
 		overflow: hidden;
 		z-index: 10;
-		background-color: #000;
-		border: vw(4) solid $orange-border;
+		background: linear-gradient(180deg,
+					#12001f 0%,
+					#1f0033 30%,
+					#2a0045 60%,
+					#180028 100%);
+		border: vw(4) solid #000;
 		box-shadow: 0 0 vw(6) rgba(246, 201, 139, 0.6);
 		border-radius: vw(12);
 		// 180px * 3 = 540px -> vw(540) = 37.5vw
@@ -247,7 +302,7 @@ $base-width: 1440;
 		}
 
 		@media (max-width:toEm($mobile)){
-			height: calc(140px * 3);
+			height: calc(120px * 3);
 			border-width: 2px;
 			border-radius: 12px;
 			margin: 2px;
@@ -281,12 +336,8 @@ $base-width: 1440;
 		flex-shrink: 0;
 
 		@media (max-width:toEm($mobile)){
-			height: 140px;
+			height: 120px;
 			padding: 10px;
-		}
-
-		@media (max-width:toEm($mobileSmall)){
-			height: 140px;
 		}
 
 		img {
@@ -565,7 +616,7 @@ $base-width: 1440;
 		display: flex;
 		align-items: center;
 		gap: 0;
-		background-color: #1a0a2e;
+		background-color: rgba(26, 10, 46, 0.6);
 		border-radius: vw(36);
 		padding: vw(4);
 
@@ -862,7 +913,11 @@ $base-width: 1440;
 	}
 
 	&__inner {
-		background-color: $red;
+		background: radial-gradient(ellipse at center,
+					rgba(90, 0, 140, 0.25) 0%,
+					rgba(40, 0, 70, 0.6) 50%,
+					rgba(10, 0, 20, 1) 100%),
+				linear-gradient(180deg, #140022, #2a0045);
 		border: vw(4) solid #ffd700;
 		border-radius: vw(30);
 		padding: vw(50) vw(60);
@@ -917,13 +972,12 @@ $base-width: 1440;
 }
 
 .cta-button {
-	background-color: $red;
+	background-color: $orange;
 	color: #fff;
 	padding: vw(15) vw(25);
 	font-size: vw(22);
 	font-weight: 700;
 	border-radius: vw(12);
-	border: vw(2) solid #fff;
 	text-align: center;
 	animation: ctaPulse 1.5s ease-in-out infinite;
 
@@ -938,15 +992,15 @@ $base-width: 1440;
 @keyframes ctaPulse {
 	0% {
 		transform: scale(1);
-		box-shadow: 0 0 0 0 rgba($red, 0.7);
+		box-shadow: 0 0 0 0 rgba($orange, 0.7);
 	}
 	50% {
 		transform: scale(1.05);
-		box-shadow: 0 0 vw(20) vw(10) rgba($red, 0.3);
+		box-shadow: 0 0 vw(20) vw(10) rgba($orange, 0.3);
 	}
 	100% {
 		transform: scale(1);
-		box-shadow: 0 0 0 0 rgba($red, 0);
+		box-shadow: 0 0 0 0 rgba($orange, 0);
 	}
 }
 

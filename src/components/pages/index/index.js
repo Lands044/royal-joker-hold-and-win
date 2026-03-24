@@ -53,7 +53,7 @@ class SlotMachine {
 				minWidth: 0,
 				cols: 3,
 				rows: 3,
-				getIconHeight: () => 140
+				getIconHeight: () => 120
 			}
 		};
 
@@ -108,11 +108,11 @@ class SlotMachine {
 					type: 'smallwin',
 					winAmount: 50,
 					// Виграшна лінія: середній рядок (горизонтальна лінія посередині)
-					winLine: [1, 2, 1],
+					winLine: [1, 0, 1],
 					result: [
-						[4, 3, 1],
-						[2, 5, 4],
-						[5, 6, 7]
+						[4, 2, 1],
+						[2, 4, 6],
+						[5, 2, 7]
 					]
 				},
 				{
@@ -121,7 +121,7 @@ class SlotMachine {
 					// Виграшна лінія: діагональ вниз
 					winLine: [1, 2, 2],
 					result: [
-						[3, 8, 1],
+						[3, 8, 2],
 						[1, 4, 8],
 						[5, 3, 8]
 					]
@@ -142,22 +142,22 @@ class SlotMachine {
 					type: 'smallwin',
 					winAmount: 50,
 					// Виграшна лінія: середній рядок
-					winLine: [1, 1, 1],
+					winLine: [1, 0, 1],
 					result: [
-						[2, 3, 5],
-						[7, 3, 2],
-						[4, 3, 8]
+						[4, 2, 1],
+						[2, 4, 6],
+						[5, 2, 7]
 					]
 				},
 				{
 					type: 'bigwin',
 					winAmount: 150,
 					// Виграшна лінія: середній рядок
-					winLine: [2, 1, 1],
+					winLine: [1, 2, 2],
 					result: [
-						[8, 5, 7],
-						[3, 8, 6],
-						[6, 8, 4]
+						[3, 8, 2],
+						[1, 4, 8],
+						[5, 3, 8]
 					]
 				}
 			]
