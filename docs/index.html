@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="./assets/img/favicon.ico">
+		<title>Royal Joker: Hold and Win</title>
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1774452943999"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1774452943999">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1774452943999">
+	</head>
+	<body>
+		<div class="wrapper">
+			<main class="page">
+				<div class="page__container">
+					<div class="game">
+						<div class="game__wrap">
+							<!-- Header with jackpots and logo -->
+							<div class="game__header">
+								<div class="game__header-coin">
+									<img alt="Logo" fetchpriority="high" src="./assets/img/logo.webp">
+								</div>
+								<div class="game__header-top">
+									<div class="jackpot jackpot--grand">
+										<span class="jackpot__label">GRAND</span>
+										<span class="jackpot__value">1000.00</span>
+									</div>
+									<div class="jackpot jackpot--major">
+										<span class="jackpot__label">MAJOR</span>
+										<span class="jackpot__value">150.00</span>
+									</div>
+								</div>
+								<div class="game__header-bottom">
+									<div class="jackpot jackpot--minor">
+										<span class="jackpot__label">MINOR</span>
+										<span class="jackpot__value">50.00</span>
+									</div>
+									<div class="jackpot jackpot--mini">
+										<span class="jackpot__label">MINI</span>
+										<span class="jackpot__value">25.00</span>
+									</div>
+								</div>
+							</div>
+							<div class="game__field">
+								<div class="drum">
+									<div class="drum__spinner">
+										<div class="drum__column">
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-1.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-2.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-3.webp">
+											</div>
+										</div>
+										<div class="drum__column">
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-5.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-6.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-7.webp">
+											</div>
+										</div>
+										<div class="drum__column">
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-1.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-2.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-3.webp">
+											</div>
+										</div>
+										<div class="drum__column">
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-5.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-6.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-7.webp">
+											</div>
+										</div>
+										<div class="drum__column">
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-1.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-2.webp">
+											</div>
+											<div class="drum__image">
+												<img alt="Icon game" src="./assets/img/icon/icon-3.webp">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="menu">
+							<div class="spin-controls">
+								<a href="#" class="menu__btn menu__btn--auto menu__button-auto">
+									<span class="menu__btn-icon"></span>
+								</a>
+								<a href="#" class="menu__btn menu__btn--spin menu__button-spin"></a>
+							</div>
+							<div class="menu__bar">
+								<div class="menu__info-block">
+									<span class="menu__info-label">BALANCE</span>
+									<span class="menu__info-value menu__info">
+										<span class="number">1000.00</span>
+									</span>
+								</div>
+								<div class="menu__info-block">
+									<span class="menu__info-label">PREVIOUS WIN</span>
+									<span class="menu__info-value menu__last-win">
+										<span class="number">0.00</span>
+									</span>
+								</div>
+								<div class="menu__wrap" data-fls-dynamic=".spin-controls, 767.98, first">
+									<button type="button" class="menu__bet-decrease">&#8722;</button>
+									<div class="menu__bet-info">
+										<span class="menu__bet-label-wrap">BET</span>
+										<span class="menu__bet-current">
+											<span class="number">1.00</span>
+										</span>
+									</div>
+									<button type="button" class="menu__bet-increase">&#43;</button>
+								</div>
+								<a href="#" class="menu__btn menu__btn--sound menu__sound">
+									<span class="menu__btn-icon"></span>
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="popup">
+						<div class="popup__overlay"></div>
+						<div class="popup__content">
+							<div class="popup__inner">
+								<h2 class="popup__title">Congratulations!</h2>
+								<p class="popup__text">Ready to continue playing?</p>
+								<a class="cta-button" href="#">Download Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+		<div class="rotate-overlay">
+			<div class="rotate-overlay__content">
+				<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+					<rect x="4" y="2" width="16" height="20" rx="2"></rect>
+					<path d="M12 18h.01"></path>
+				</svg>
+				<p>Please rotate your device to portrait mode</p>
+			</div>
+		</div>
+	</body>
+</html>
