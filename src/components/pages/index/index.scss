@@ -50,11 +50,13 @@ $base-width: 1440;
 	@media (max-width:toEm($mobile)){
 		padding-left: 0;
 		padding-right: 0;
+		justify-content: center;
+		gap: 20px;
 	}
 
-	@media (min-height: toEm(860)) and (max-width: toEm($mobile)) {
-		padding-top: 20%;
-	}
+	// @media (min-height: toEm(860)) and (max-width: toEm($mobile)) {
+	// 	padding-top: 20%;
+	// }
 
 	&__wrap {
 		width: 100%;
