@@ -211,12 +211,20 @@ class SlotMachine {
 
 		// Обробники кнопок зміни ставки
 		if (this.decreaseButton) {
+			this.decreaseButton.addEventListener('touchend', (e) => {
+				e.preventDefault();
+				this.decreaseBet();
+			});
 			this.decreaseButton.addEventListener('click', () => {
 				this.decreaseBet();
 			});
 		}
 
 		if (this.increaseButton) {
+			this.increaseButton.addEventListener('touchend', (e) => {
+				e.preventDefault();
+				this.increaseBet();
+			});
 			this.increaseButton.addEventListener('click', () => {
 				this.increaseBet();
 			});
