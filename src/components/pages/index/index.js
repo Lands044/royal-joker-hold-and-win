@@ -46,14 +46,19 @@ class SlotMachine {
 				minWidth: 767.98,
 				cols: 3,
 				rows: 3,
-				// Масштабування тільки для екранів > 1440px, інакше фіксовано 180px
-				getIconHeight: () => Math.max(180, (180 / 1440) * window.innerWidth)
+				getIconHeight: () => {
+					const img = this.drumSpinner?.querySelector('.drum__image');
+					return img ? img.getBoundingClientRect().height : (180 / 1440) * window.innerWidth;
+				}
 			},
 			mobile: {
 				minWidth: 0,
 				cols: 3,
 				rows: 3,
-				getIconHeight: () => 120
+				getIconHeight: () => {
+					const img = this.drumSpinner?.querySelector('.drum__image');
+					return img ? img.getBoundingClientRect().height : 120;
+				}
 			}
 		};
 
@@ -167,11 +172,10 @@ class SlotMachine {
 	}
 
 	getCurrentBreakpoint() {
-		const width = window.innerWidth;
-		if (width > this.breakpoints.desktop.minWidth) {
-			return 'desktop';
+		if (window.matchMedia('(pointer: coarse)').matches) {
+			return 'mobile';
 		}
-		return 'mobile';
+		return 'desktop';
 	}
 
 	getConfigForCurrentBreakpoint() {
