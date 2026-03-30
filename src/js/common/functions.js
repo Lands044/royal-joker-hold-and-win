@@ -310,16 +310,20 @@ export function setDesktopScale(options = {}) {
 		// На великих екранах контент вже збільшений на коефіцієнт (viewportWidth / designWidth)
 		const vwScale = viewportWidth > designWidth ? viewportWidth / designWidth : 1;
 
-		// Реальна висота контенту з урахуванням vw() збільшення
+		// Реальна висота і ширина контенту з урахуванням vw() збільшення
 		const actualContentHeight = designHeight * vwScale;
+		const actualContentWidth = designWidth * vwScale;
 
-		// Обчислюємо коефіцієнт масштабування
-		// Для висоти: порівнюємо viewport з реальною висотою контенту
+		// Обчислюємо коефіцієнт масштабування по обох осях
 		const scaleY = viewportHeight / actualContentHeight;
+		const scaleX = viewportWidth / actualContentWidth;
 
-		// Застосовуємо масштабування якщо контент не вміщається по висоті
-		if (scaleY < 1) {
-			element.style.transform = `scale(${scaleY})`;
+		// Беремо мінімальний scale щоб контент вміщався і по висоті і по ширині
+		const scale = Math.min(scaleX, scaleY, 1);
+
+		// Застосовуємо масштабування якщо контент не вміщається
+		if (scale < 1) {
+			element.style.transform = `scale(${scale})`;
 			element.style.transformOrigin = 'top center';
 			document.body.style.overflow = 'hidden';
 		} else {

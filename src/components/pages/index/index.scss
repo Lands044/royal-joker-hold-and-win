@@ -12,11 +12,9 @@ $frameGradient: linear-gradient(145deg, #f2a527 0%, #FFB300 50%, #f39f0f 100%);
 // Base width for vw calculations (design width)
 $base-width: 1440;
 
-// Function to convert px to vw (proportional scaling only for screens > 1440px)
-// On screens <= 1440px returns fixed px value
-// On screens > 1440px scales proportionally
+// Function to convert px to vw (always proportional, scales with viewport)
 @function vw($px) {
-	@return max(#{$px}px, calc(#{$px} / #{$base-width} * 100vw));
+	@return calc(#{$px} / #{$base-width} * 100vw);
 }
 
 .page {
@@ -38,8 +36,8 @@ $base-width: 1440;
 .game {
 	width: 100%;
 	height: 100vh;
-	height: 100dvh; // Dynamic viewport height for iOS Safari/Chrome
-	height: calc(var(--vh, 1vh) * 100); // JS fallback for older browsers
+	height: 100dvh;
+	height: calc(var(--vh, 1vh) * 100);
 	position: relative;
 	z-index: 5;
 	padding: vw(10) vw(30);
@@ -47,22 +45,18 @@ $base-width: 1440;
 	flex-direction: column;
 	justify-content: space-between;
 
-	@media (max-width:toEm($mobile)){
+	@media (pointer: coarse) {
 		padding-left: 0;
 		padding-right: 0;
 		justify-content: center;
 		gap: 20px;
 	}
 
-	// @media (min-height: toEm(860)) and (max-width: toEm($mobile)) {
-	// 	padding-top: 20%;
-	// }
-
 	&__wrap {
 		width: 100%;
 		padding: 0 vw(80);
 
-		@media (max-width:toEm($tablet)){
+		@media (pointer: coarse) {
 			padding: 0;
 		}
 	}
@@ -72,14 +66,18 @@ $base-width: 1440;
 		z-index: 100;
 		display: grid;
 		grid-template-rows: auto auto;
-		max-width: 800px;
+		max-width: vw(800);
 		margin: 0 auto;
+
+		@media (pointer: coarse) {
+			min-width: 100%;
+		}
 	}
 
 	&__header-coin {
 		position: absolute;
 		left: 50%;
-		bottom: -18px;
+		bottom: vw(-18);
 		transform: translateX(-50%);
 		width: vw(280);
 		pointer-events: none;
@@ -89,9 +87,11 @@ $base-width: 1440;
 			height: auto;
 		}
 
-		@media (max-width:toEm(640)){
-			width: vw(220);
+		@media (pointer: coarse) {
+			max-width: 180px;
+			width: 100%;
 		}
+
 	}
 
 	&__header-top {
@@ -99,7 +99,7 @@ $base-width: 1440;
 		justify-content: space-between;
 		gap: vw(10);
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			gap: 6px;
 		}
 	}
@@ -111,7 +111,7 @@ $base-width: 1440;
 		gap: vw(10);
 		margin-top: vw(4);
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			gap: 6px;
 			margin-top: 3px;
 		}
@@ -132,7 +132,7 @@ $base-width: 1440;
 		line-height: 1;
 		white-space: nowrap;
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			font-size: 22px;
 			letter-spacing: 1px;
 		}
@@ -144,10 +144,6 @@ $base-width: 1440;
 		flex-direction: column;
 		align-items: center;
 		position: relative;
-
-		@media (max-height: toEm(700)) {
-			margin-top: 10px;
-		}
 	}
 }
 
@@ -161,7 +157,7 @@ $base-width: 1440;
 	border-radius: vw(6);
 	flex: 1;
 
-	@media (max-width:toEm($mobile)){
+	@media (pointer: coarse) {
 		padding: 4px 10px;
 		min-width: 0;
 		border-width: 2px;
@@ -176,7 +172,7 @@ $base-width: 1440;
 		margin-bottom: vw(2);
 		color: $gold;
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			font-size: 9px;
 			letter-spacing: 1px;
 		}
@@ -188,7 +184,7 @@ $base-width: 1440;
 		line-height: 1;
 		color: $gold;
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			font-size: 16px;
 		}
 	}
@@ -229,8 +225,8 @@ $base-width: 1440;
 	&--major {
 		max-width: vw(220);
 
-		@media (max-width:toEm(640)){
-			max-width: vw(110);
+		@media (pointer: coarse) {
+			max-width: 110px;
 		}
 	}
 
@@ -238,8 +234,8 @@ $base-width: 1440;
 	&--mini {
 		max-width: vw(160);
 
-		@media (max-width:toEm(640)) {
-			max-width: vw(80);
+		@media (pointer: coarse) {
+			max-width: 80px;
 		}
 	}
 }
@@ -251,7 +247,7 @@ $base-width: 1440;
 	justify-content: space-around;
 	overflow: hidden;
 	position: relative;
-	max-width: 800px;
+	max-width: vw(800);
 	width: 100%;
 	background: $frameGradient;
 	border: vw(2) solid $gold;
@@ -259,10 +255,11 @@ $base-width: 1440;
 	padding: vw(2) vw(8);
 	border-radius: vw(16);
 
-	@media (max-width:toEm($mobile)){
+	@media (pointer: coarse) {
 		padding: 4px;
 		border-width: 2px;
 		border-radius: 16px;
+		max-width: none;
 	}
 
 	&__spinner {
@@ -277,7 +274,8 @@ $base-width: 1440;
 		box-shadow: 0 0 vw(6) rgba(246, 201, 139, 0.6);
 		border-radius: vw(12);
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
+			grid-template-columns: repeat(3, 1fr);
 			border-width: 2px;
 			border-radius: 12px;
 		}
@@ -295,7 +293,6 @@ $base-width: 1440;
 		border: vw(4) solid #000;
 		box-shadow: 0 0 vw(6) rgba(246, 201, 139, 0.6);
 		border-radius: vw(12);
-		// 180px * 3 = 540px -> vw(540) = 37.5vw
 		height: vw(540);
 
 		&:not(:first-child),
@@ -303,7 +300,7 @@ $base-width: 1440;
 			margin: vw(2) vw(2);
 		}
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			height: calc(120px * 3);
 			border-width: 2px;
 			border-radius: 12px;
@@ -333,11 +330,10 @@ $base-width: 1440;
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		// 180px -> vw(180) = 12.5vw
 		height: vw(180);
 		flex-shrink: 0;
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			height: 120px;
 			padding: 10px;
 		}
@@ -381,7 +377,7 @@ $base-width: 1440;
 	animation: flash 0.6s ease-out forwards;
 	z-index: 100;
 
-	@media (max-width:toEm($mobile)){
+	@media (pointer: coarse) {
 		width: 20px;
 		height: 20px;
 	}
@@ -575,7 +571,7 @@ $base-width: 1440;
 		gap: vw(20);
 		padding: vw(10) vw(20);
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			gap: 12px;
 			padding: 8px 12px;
 		}
@@ -596,7 +592,7 @@ $base-width: 1440;
 		margin-bottom: vw(3);
 		white-space: nowrap;
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			font-size: 9px;
 			letter-spacing: 1px;
 			margin-bottom: 2px;
@@ -609,7 +605,7 @@ $base-width: 1440;
 		color: #fff;
 		line-height: 1;
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			font-size: 18px;
 		}
 	}
@@ -622,7 +618,7 @@ $base-width: 1440;
 		border-radius: vw(36);
 		padding: vw(4);
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			border-radius: 36px;
 			padding: 4px;
 		}
@@ -647,7 +643,7 @@ $base-width: 1440;
 		line-height: 1;
 		padding-bottom: 3px;
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			width: 38px;
 			height: 38px;
 			font-size: 20px;
@@ -674,7 +670,7 @@ $base-width: 1440;
 		align-items: center;
 		padding: 0 vw(12);
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			padding: 0 8px;
 		}
 	}
@@ -689,7 +685,7 @@ $base-width: 1440;
 		line-height: 1;
 		margin-bottom: vw(3);
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			font-size: 9px;
 			letter-spacing: 1px;
 			margin-bottom: 2px;
@@ -704,7 +700,7 @@ $base-width: 1440;
 		line-height: 1;
 		white-space: nowrap;
 
-		@media (max-width:toEm($mobile)){
+		@media (pointer: coarse) {
 			font-size: 18px;
 		}
 	}
@@ -733,12 +729,12 @@ $base-width: 1440;
 				display: block;
 				width: vw(26);
 				height: vw(26);
-				background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3C/svg%3E") center/contain no-repeat;
 
-				@media (max-width:toEm($mobile)){
+				@media (pointer: coarse) {
 					width: 22px;
 					height: 22px;
 				}
+				background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3C/svg%3E") center/contain no-repeat;
 			}
 
 			&.sound-off {
@@ -761,7 +757,7 @@ $base-width: 1440;
 .spin-controls {
 	position: absolute;
 	top: 50%;
-	right: 0;
+	right: 20px;
 	transform: translateY(-50%);
 	display: flex;
 	flex-direction: column;
@@ -769,7 +765,7 @@ $base-width: 1440;
 	gap: vw(30);
 	z-index: 20;
 
-	@media (max-width:toEm($tablet)){
+	@media (pointer: coarse) {
 		position: static;
 		flex-direction: row;
 		transform: none;
@@ -808,10 +804,10 @@ $base-width: 1440;
 		width: vw(80);
 		height: vw(80);
 		background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='white' viewBox='0 0 24 24'%3E%3Cpath d='M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z'/%3E%3C/svg%3E") center/contain no-repeat;
-	
-		@media (max-width:toEm($tablet)) {
-			width: vw(45);
-			height: vw(45);
+
+		@media (pointer: coarse) {
+			width: 45px;
+			height: 45px;
 		}
 	}
 }
@@ -829,10 +825,11 @@ $base-width: 1440;
 	cursor: pointer;
 	transition: opacity 0.2s ease, transform 0.1s ease;
 	box-shadow: 0 0 vw(20) rgba(224, 112, 32, 0.6);
+	position: relative;
 
-	@media (max-width:toEm($tablet)){
-		width: vw(80);
-		height: vw(80);
+	@media (pointer: coarse) {
+		width: 80px;
+		height: 80px;
 	}
 
 	&:hover {
@@ -850,7 +847,10 @@ $base-width: 1440;
 
 	&::before {
 		content: '';
-		margin-top: 8px;
+		margin-top: 1.25px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
 		width: 100%;
 		height: 100%;
 		display: block;
@@ -898,10 +898,6 @@ $base-width: 1440;
 		backdrop-filter: blur(vw(10));
 		opacity: 0;
 		transition: opacity 0.5s ease;
-
-		@media (max-width:toEm($mobile)) {
-			backdrop-filter: blur(10px);
-		}
 	}
 
 	&__content {
@@ -935,7 +931,7 @@ $base-width: 1440;
 		align-items: center;
 		justify-content: center;
 
-		@media (max-width:toEm($mobile)) {
+		@media (pointer: coarse) {
 			padding: 40px 30px;
 			border-radius: 20px;
 			border-width: 3px;
@@ -953,7 +949,7 @@ $base-width: 1440;
 		letter-spacing: vw(2);
 		animation: titleGlow 2s ease-in-out infinite;
 
-		@media (max-width:toEm($mobile)) {
+		@media (pointer: coarse) {
 			font-size: 24px;
 			margin-bottom: 15px;
 			letter-spacing: 2px;
@@ -967,7 +963,7 @@ $base-width: 1440;
 		margin-bottom: vw(40);
 		text-shadow: 0 vw(2) vw(4) rgba(0, 0, 0, 0.5);
 
-		@media (max-width:toEm($mobile)) {
+		@media (pointer: coarse) {
 			font-size: 16px;
 			margin-bottom: 30px;
 		}
@@ -984,11 +980,10 @@ $base-width: 1440;
 	text-align: center;
 	animation: ctaPulse 1.5s ease-in-out infinite;
 
-	@media (max-width:toEm($mobile)) {
+	@media (pointer: coarse) {
 		padding: 15px 25px;
 		font-size: 22px;
 		border-radius: 12px;
-		border-width: 2px;
 	}
 }
 

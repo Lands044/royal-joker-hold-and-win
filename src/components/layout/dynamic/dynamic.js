@@ -50,7 +50,12 @@ class DynamicAdapt {
 		this.arraySort(this.objects)
 
 		this.mediaQueries = this.objects
-			.map(({ breakpoint }) => `(${this.type}-width: ${breakpoint / 16}em),${breakpoint}`)
+			.map(({ breakpoint }) => {
+				if (breakpoint === 'touch') {
+					return `(pointer: coarse),touch`
+				}
+				return `(${this.type}-width: ${breakpoint / 16}em),${breakpoint}`
+			})
 			.filter((item, index, self) => self.indexOf(item) === index)
 
 		this.mediaQueries.forEach((media) => {
