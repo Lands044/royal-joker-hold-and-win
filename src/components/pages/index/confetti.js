@@ -28,28 +28,28 @@ class ConfettiAnimation {
 			class Particule {
 				constructor(parent) {
 					this.parent = parent;
-					this.gravite = parent.gravite;
 					this.reinit();
 					this.forme = p.round(p.random(0, 1));
 					this.etape = 0;
 				}
 
 				reinit() {
+					const zoom = window.outerWidth / window.innerWidth;
 					this.position = this.parent.position.copy();
 					this.position.y = p.random(-20, -100);
 					this.position.x = p.random(0, p.width);
-					this.velocite = p.createVector(p.random(-6, 6), p.random(-10, 2));
+					this.velocite = p.createVector(p.random(-6, 6) / zoom, p.random(-10, 2) / zoom);
 					this.friction = p.random(0.995, 0.98);
-					this.taille = p.round(p.random(5, 15));
+					this.taille = p.round(p.random(5, 15) / zoom);
 					this.moitie = this.taille / 2;
 					this.couleur = p.color(p.random(themeCouleur));
 				}
 
 				dessiner() {
-					this.etape = 0.5 + Math.sin(this.velocite.y * 20) * 0.5;
+					this.etape = 0.5 + Math.sin(this.velocite.y * 5) * 0.5;
 
 					p.translate(this.position.x, this.position.y);
-					p.rotate(this.velocite.x * 2);
+					p.rotate(this.velocite.x * 0.5);
 					p.scale(1, this.etape);
 					p.noStroke();
 					p.fill(this.couleur);
@@ -64,7 +64,7 @@ class ConfettiAnimation {
 				}
 
 				integration() {
-					this.velocite.add(this.gravite);
+					this.velocite.add(this.parent.gravite);
 					this.velocite.mult(this.friction);
 					this.position.add(this.velocite);
 
@@ -89,7 +89,8 @@ class ConfettiAnimation {
 				constructor(nombreMax, position) {
 					this.position = position.copy();
 					this.nombreMax = nombreMax;
-					this.gravite = p.createVector(0, 0.1);
+					const zoom = window.outerWidth / window.innerWidth;
+					this.gravite = p.createVector(0, 0.2 / zoom);
 					this.friction = 0.98;
 					this.particules = [];
 
@@ -117,6 +118,8 @@ class ConfettiAnimation {
 			p.windowResized = () => {
 				p.resizeCanvas(p.windowWidth, p.windowHeight);
 				confettis.position = p.createVector(p.width / 2, -40);
+				const zoom = window.outerWidth / window.innerWidth;
+				confettis.gravite = p.createVector(0, 0.2 / zoom);
 			};
 		}, this.canvasContainer);
 	}
