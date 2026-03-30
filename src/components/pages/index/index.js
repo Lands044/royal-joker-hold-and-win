@@ -194,6 +194,10 @@ class SlotMachine {
 
 		// Обробники кнопок спіну
 		if (this.spinButton) {
+			this.spinButton.addEventListener('touchend', (e) => {
+				e.preventDefault();
+				this.handleSpin();
+			});
 			this.spinButton.addEventListener('click', (e) => {
 				e.preventDefault();
 				this.handleSpin();
@@ -201,6 +205,10 @@ class SlotMachine {
 		}
 
 		if (this.autoButton) {
+			this.autoButton.addEventListener('touchend', (e) => {
+				e.preventDefault();
+				this.handleSpin();
+			});
 			this.autoButton.addEventListener('click', (e) => {
 				e.preventDefault();
 				this.handleSpin();
@@ -208,6 +216,10 @@ class SlotMachine {
 		}
 
 		// Обробник кнопки звуку
+		this.soundButton.addEventListener('touchend', (e) => {
+			e.preventDefault();
+			this.toggleSound();
+		});
 		this.soundButton.addEventListener('click', (e) => {
 			e.preventDefault();
 			this.toggleSound();
@@ -1129,6 +1141,16 @@ class SlotMachine {
 		}
 	}
 }
+
+// Блокуємо double-tap zoom глобально на всіх елементах
+let lastTouchEnd = 0;
+document.addEventListener('touchend', (e) => {
+	const now = Date.now();
+	if (now - lastTouchEnd < 300) {
+		e.preventDefault();
+	}
+	lastTouchEnd = now;
+}, { passive: false });
 
 // Ініціалізація при завантаженні сторінки
 document.addEventListener('DOMContentLoaded', () => {
