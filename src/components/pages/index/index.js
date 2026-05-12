@@ -44,7 +44,7 @@ class SlotMachine {
 		this.breakpoints = {
 			desktop: {
 				minWidth: 767.98,
-				cols: 3,
+				cols: 5,
 				rows: 3,
 				getIconHeight: () => {
 					const img = this.drumSpinner?.querySelector('.drum__image');
@@ -106,7 +106,9 @@ class SlotMachine {
 					result: [
 						[1, 7, 4],
 						[6, 2, 5],
-						[4, 1, 3]
+						[4, 1, 3],
+						[6, 3, 8],
+						[2, 5, 1]
 					]
 				},
 				{
@@ -117,7 +119,9 @@ class SlotMachine {
 					result: [
 						[4, 2, 1],
 						[2, 4, 6],
-						[5, 2, 7]
+						[5, 2, 7],
+						[5, 1, 4],
+						[3, 4, 8]
 					]
 				},
 				{
@@ -128,7 +132,9 @@ class SlotMachine {
 					result: [
 						[3, 8, 2],
 						[1, 4, 8],
-						[5, 3, 8]
+						[5, 3, 8],
+						[4, 3, 2],
+						[5, 1, 8]
 					]
 				}
 			],
@@ -289,7 +295,7 @@ class SlotMachine {
 				const iconNum = ((i + randomOffset) % this.icons) + 1;
 				const icon = document.createElement('div');
 				icon.className = 'drum__image';
-				icon.innerHTML = `<img src="${this.baseUrl}assets/img/icon/icon-${iconNum}.webp" alt="Icon ${iconNum}">`;
+				icon.innerHTML = `<img src="${this.baseUrl}assets/img/icon/icon-${iconNum}.png" alt="Icon ${iconNum}">`;
 				strip.appendChild(icon);
 			}
 
@@ -301,7 +307,7 @@ class SlotMachine {
 					columnIcons.forEach((iconNum) => {
 						const icon = document.createElement('div');
 						icon.className = 'drum__image';
-						icon.innerHTML = `<img src="${this.baseUrl}assets/img/icon/icon-${iconNum}.webp" alt="Icon ${iconNum}">`;
+						icon.innerHTML = `<img src="${this.baseUrl}assets/img/icon/icon-${iconNum}.png" alt="Icon ${iconNum}">`;
 						strip.appendChild(icon);
 					});
 				}
@@ -485,7 +491,7 @@ class SlotMachine {
 	// Отримує номер іконки з src
 	getIconNumber(img) {
 		const src = img.getAttribute('src');
-		const match = src.match(/icon-(\d+)\.webp/);
+		const match = src.match(/icon-(\d+)\.png/);
 		return match ? parseInt(match[1]) : 1;
 	}
 
