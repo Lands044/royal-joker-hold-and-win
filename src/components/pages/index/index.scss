@@ -913,11 +913,12 @@ $base-width: 1440;
 	}
 
 	&__inner {
-		background: radial-gradient(ellipse at center,
-					rgba(90, 0, 140, 0.25) 0%,
-					rgba(40, 0, 70, 0.6) 50%,
-					rgba(10, 0, 20, 1) 100%),
-				linear-gradient(180deg, #140022, #2a0045);
+		background: radial-gradient(circle at center,
+					#ff5a2a 0%,
+					#e5391f 35%,
+					#c6281a 60%,
+					#8e1b12 85%,
+					#5a0f0a 100%);
 		border: vw(4) solid #ffd700;
 		border-radius: vw(30);
 		padding: vw(50) vw(60);
@@ -972,7 +973,7 @@ $base-width: 1440;
 }
 
 .cta-button {
-	background-color: $orange;
+	background-color: #119b28;
 	color: #fff;
 	padding: vw(15) vw(25);
 	font-size: vw(22);
