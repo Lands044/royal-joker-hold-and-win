@@ -100,21 +100,8 @@ class SlotMachine {
 		this.predefinedResults = {
 			desktop: [
 				{
-					type: 'loss',
-					winAmount: 0,
-					winLine: null,
-					result: [
-						[1, 7, 4],
-						[6, 2, 5],
-						[4, 1, 3],
-						[6, 3, 8],
-						[2, 5, 1]
-					]
-				},
-				{
 					type: 'smallwin',
 					winAmount: 50,
-					// Виграшна лінія: середній рядок (горизонтальна лінія посередині)
 					winLine: [1, 0, 1],
 					result: [
 						[4, 2, 1],
@@ -127,7 +114,6 @@ class SlotMachine {
 				{
 					type: 'bigwin',
 					winAmount: 150,
-					// Виграшна лінія: діагональ вниз
 					winLine: [1, 1, 1, 1, 1],
 					result: [
 						[3, 8, 2],
@@ -140,19 +126,8 @@ class SlotMachine {
 			],
 			mobile: [
 				{
-					type: 'loss',
-					winAmount: 0,
-					winLine: null,
-					result: [
-						[4, 1, 7],
-						[5, 2, 8],
-						[7, 4, 3]
-					]
-				},
-				{
 					type: 'smallwin',
 					winAmount: 50,
-					// Виграшна лінія: середній рядок
 					winLine: [1, 0, 1],
 					result: [
 						[4, 2, 1],
@@ -163,12 +138,11 @@ class SlotMachine {
 				{
 					type: 'bigwin',
 					winAmount: 150,
-					// Виграшна лінія: середній рядок
-					winLine: [1, 2, 2],
+					winLine: [1, 1, 1],
 					result: [
 						[3, 8, 2],
-						[1, 4, 8],
-						[5, 3, 8]
+						[1, 8, 6],
+						[5, 8, 4]
 					]
 				}
 			]
