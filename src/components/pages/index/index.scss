@@ -18,8 +18,12 @@ $base-width: 1440;
 }
 
 .page {
-	background: radial-gradient(circle at center, rgba(255, 0, 255, 0.2), transparent 60%),
-			linear-gradient(180deg, #2b0040, #6a0dad);
+	background: radial-gradient(circle at center,
+				#ff5a2a 0%,
+				#e5391f 35%,
+				#c6281a 60%,
+				#8e1b12 85%,
+				#5a0f0a 100%);
 	min-height: 100vh;
 	min-height: 100dvh;
 	display: flex;
@@ -76,10 +80,11 @@ $base-width: 1440;
 
 	&__header-coin {
 		position: absolute;
+		top: 60%;
 		left: 50%;
 		bottom: vw(-18);
 		transform: translateX(-50%);
-		width: vw(280);
+		width: vw(400);
 		pointer-events: none;
 
 		img {
@@ -285,11 +290,7 @@ $base-width: 1440;
 		position: relative;
 		overflow: hidden;
 		z-index: 10;
-		background: linear-gradient(180deg,
-					#12001f 0%,
-					#1f0033 30%,
-					#2a0045 60%,
-					#180028 100%);
+		background: #5a1e03;
 		border: vw(4) solid #000;
 		box-shadow: 0 0 vw(6) rgba(246, 201, 139, 0.6);
 		border-radius: vw(12);
