@@ -1158,7 +1158,34 @@ document.addEventListener('touchend', (e) => {
 	lastTouchEnd = now;
 }, { passive: false });
 
+function runPreloader(onComplete) {
+	const preloader = document.getElementById('preloader');
+	const fill = document.getElementById('preloaderFill');
+	if (!preloader || !fill) { onComplete(); return; }
+
+	let progress = 0;
+	const duration = 2200;
+	const interval = 30;
+	const step = (interval / duration) * 100;
+
+	const timer = setInterval(() => {
+		progress = Math.min(progress + step + Math.random() * step * 0.5, 100);
+		fill.style.width = progress + '%';
+
+		if (progress >= 100) {
+			clearInterval(timer);
+			setTimeout(() => {
+				preloader.classList.add('hidden');
+				preloader.addEventListener('transitionend', () => preloader.remove(), { once: true });
+				onComplete();
+			}, 300);
+		}
+	}, interval);
+}
+
 // Ініціалізація при завантаженні сторінки
 document.addEventListener('DOMContentLoaded', () => {
-	new SlotMachine();
+	runPreloader(() => {
+		new SlotMachine();
+	});
 });
