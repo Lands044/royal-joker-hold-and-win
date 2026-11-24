@@ -4,7 +4,15 @@
 	"game": {
 		"$comment": "balance/bets/betIndex: starting balance, bet ladder for the -/+ buttons, initially selected bet. jackpots: values shown in the plates. winAnimation: 'line' or 'border'. Times are in ms. spins: played in order, then the bonus popup opens — type 'smallwin' | 'bigwin' | 'lose'; winLine = winning row (0-2) per reel, null = none; result = 3 icons (1-8, top to bottom) per reel. desktop has 5 reels, mobile (touch devices) 3.",
 		"balance": 1000,
-		"bets": [1, 2, 4, 8, 16, 32, 64],
+		"bets": [
+			"1",
+			"2",
+			"4",
+			"8",
+			"16",
+			"32",
+			"64"
+		],
 		"betIndex": 0,
 		"jackpots": {
 			"grand": 1000,
@@ -24,28 +32,130 @@
 				{
 					"type": "smallwin",
 					"winAmount": 50,
-					"winLine": [1, 0, 1],
-					"result": [[4, 2, 1], [2, 4, 6], [5, 2, 7], [5, 1, 4], [3, 4, 8]]
+					"winLine": [
+						1,
+						0,
+						1
+					],
+					"result": [
+						[
+							4,
+							2,
+							1
+						],
+						[
+							2,
+							4,
+							6
+						],
+						[
+							5,
+							2,
+							7
+						],
+						[
+							5,
+							1,
+							4
+						],
+						[
+							3,
+							4,
+							8
+						]
+					]
 				},
 				{
 					"type": "bigwin",
 					"winAmount": 150,
-					"winLine": [1, 1, 1, 1, 1],
-					"result": [[3, 8, 2], [1, 8, 4], [5, 8, 5], [4, 8, 2], [5, 8, 6]]
+					"winLine": [
+						1,
+						1,
+						1,
+						1,
+						1
+					],
+					"result": [
+						[
+							3,
+							8,
+							2
+						],
+						[
+							1,
+							8,
+							4
+						],
+						[
+							5,
+							8,
+							5
+						],
+						[
+							4,
+							8,
+							2
+						],
+						[
+							5,
+							8,
+							6
+						]
+					]
 				}
 			],
 			"mobile": [
 				{
 					"type": "smallwin",
 					"winAmount": 50,
-					"winLine": [1, 0, 1],
-					"result": [[4, 2, 1], [2, 4, 6], [5, 2, 7]]
+					"winLine": [
+						1,
+						0,
+						1
+					],
+					"result": [
+						[
+							4,
+							2,
+							1
+						],
+						[
+							2,
+							4,
+							6
+						],
+						[
+							5,
+							2,
+							7
+						]
+					]
 				},
 				{
 					"type": "bigwin",
 					"winAmount": 150,
-					"winLine": [1, 1, 1],
-					"result": [[3, 8, 2], [1, 8, 6], [5, 8, 4]]
+					"winLine": [
+						1,
+						1,
+						1
+					],
+					"result": [
+						[
+							3,
+							8,
+							2
+						],
+						[
+							1,
+							8,
+							6
+						],
+						[
+							5,
+							8,
+							4
+						]
+					]
 				}
 			]
 		}

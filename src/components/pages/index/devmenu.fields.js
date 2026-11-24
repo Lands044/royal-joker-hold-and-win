@@ -8,6 +8,8 @@ import { DEFAULT_CONFIG } from '@js/config/game.defaults.js'
 // - game.spins.*.result / winLine — reel grids tied to the 5×3 / 3×3 layout
 // - texts.jackpots.* / balance / bet labels — rarely changed, kept out of the
 //   panel to keep it short
+// - game.preloaderTime / spinDuration / reelDelay / smallWinTime / bigWinTime /
+//   popupDelay — timings, tuned by hand only
 // - cta.target, assets.*, dev.* — plumbing
 
 const SPIN_TYPES_HINT = 'smallwin | bigwin | lose'
@@ -33,13 +35,5 @@ export const GAME_FIELDS = [
 	['Спіни', [
 		...spinFields('desktop', 'Desktop'),
 		...spinFields('mobile', 'Mobile')
-	]],
-	['Тривалості (мс)', [
-		{ path: 'game.preloaderTime', label: 'Прелоадер', type: 'number', min: 0, step: 100 },
-		{ path: 'game.spinDuration', label: 'Обертання', type: 'number', min: 300, step: 100 },
-		{ path: 'game.reelDelay', label: 'Затримка між барабанами', type: 'number', min: 0, step: 10 },
-		{ path: 'game.smallWinTime', label: 'Малий виграш', type: 'number', min: 0, step: 100 },
-		{ path: 'game.bigWinTime', label: 'Великий виграш', type: 'number', min: 0, step: 100 },
-		{ path: 'game.popupDelay', label: 'Затримка попапу', type: 'number', min: 0, step: 100 }
 	]]
 ]
