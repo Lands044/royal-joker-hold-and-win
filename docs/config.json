@@ -1,0 +1,199 @@
+{
+	"$comment": "Runtime config for this landing. This file is served as-is from the public folder and is fetched by the page on every load, so editing it changes the landing WITHOUT a rebuild. Reload the page (or let the dev watcher pick it up) and the landing re-renders.",
+	"version": 1,
+	"game": {
+		"$comment": "balance/bets/betIndex: starting balance, bet ladder for the -/+ buttons, initially selected bet. jackpots: values shown in the plates. winAnimation: 'line' or 'border'. Times are in ms. spins: played in order, then the bonus popup opens — type 'smallwin' | 'bigwin' | 'lose'; winLine = winning row (0-2) per reel, null = none; result = 3 icons (1-8, top to bottom) per reel. desktop has 5 reels, mobile (touch devices) 3.",
+		"balance": 1000,
+		"bets": [
+			"1",
+			"2",
+			"4",
+			"8",
+			"16",
+			"32",
+			"64"
+		],
+		"betIndex": 0,
+		"jackpots": {
+			"grand": 1000,
+			"major": 150,
+			"minor": 50,
+			"mini": 25
+		},
+		"winAnimation": "line",
+		"preloaderTime": 2200,
+		"spinDuration": 3000,
+		"reelDelay": 100,
+		"smallWinTime": 1500,
+		"bigWinTime": 2000,
+		"popupDelay": 1500,
+		"spins": {
+			"desktop": [
+				{
+					"type": "smallwin",
+					"winAmount": 50,
+					"winLine": [
+						1,
+						0,
+						1
+					],
+					"result": [
+						[
+							4,
+							2,
+							1
+						],
+						[
+							2,
+							4,
+							6
+						],
+						[
+							5,
+							2,
+							7
+						],
+						[
+							5,
+							1,
+							4
+						],
+						[
+							3,
+							4,
+							8
+						]
+					]
+				},
+				{
+					"type": "bigwin",
+					"winAmount": 150,
+					"winLine": [
+						1,
+						1,
+						1,
+						1,
+						1
+					],
+					"result": [
+						[
+							3,
+							8,
+							2
+						],
+						[
+							1,
+							8,
+							4
+						],
+						[
+							5,
+							8,
+							5
+						],
+						[
+							4,
+							8,
+							2
+						],
+						[
+							5,
+							8,
+							6
+						]
+					]
+				}
+			],
+			"mobile": [
+				{
+					"type": "smallwin",
+					"winAmount": 50,
+					"winLine": [
+						1,
+						0,
+						1
+					],
+					"result": [
+						[
+							4,
+							2,
+							1
+						],
+						[
+							2,
+							4,
+							6
+						],
+						[
+							5,
+							2,
+							7
+						]
+					]
+				},
+				{
+					"type": "bigwin",
+					"winAmount": 150,
+					"winLine": [
+						1,
+						1,
+						1
+					],
+					"result": [
+						[
+							3,
+							8,
+							2
+						],
+						[
+							1,
+							8,
+							6
+						],
+						[
+							5,
+							8,
+							4
+						]
+					]
+				}
+			]
+		}
+	},
+	"cta": {
+		"url": "#",
+		"target": "_self"
+	},
+	"texts": {
+		"popupTitle": "CLAIM YOUR BONUS!",
+		"popupText": "1500 € + 250 FS",
+		"ctaButton": "GET BONUS",
+		"balanceLabel": "BALANCE",
+		"lastWinLabel": "PREVIOUS WIN",
+		"betLabel": "BET",
+		"jackpots": {
+			"grand": "GRAND",
+			"major": "MAJOR",
+			"minor": "MINOR",
+			"mini": "MINI"
+		}
+	},
+	"sound": {
+		"enabled": true,
+		"volume": 1
+	},
+	"assets": {
+		"$comment": "Values are either a built-in key (a filename under src/assets/img or src/assets/sound, no extension) or a URL. A URL starting with / , ./ , http:// or https:// is used verbatim, so you can drop custom art into the public folder and point at it here. Reel icons (src/assets/img/icon/icon-1..8.png) are not configurable here.",
+		"logo": "logo",
+		"sounds": {
+			"spin": "spin",
+			"win": "win"
+		}
+	},
+	"dev": {
+		"$comment": "watch polls this file and re-renders the landing in place when it changes. menu enables the config editor panel — it ships in the production build too, where it saves edits to the browser's localStorage only (use 'Download' to export a config.json to deploy).",
+		"watch": true,
+		"watchInterval": 1500,
+		"menu": true
+	}
+}
